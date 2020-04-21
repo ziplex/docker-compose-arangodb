@@ -50,3 +50,35 @@ arangosh --server.endpoint http+tcp://127.0.0.1:8529 --server.password rootpassw
 ```
 
 Enjoy your local ArangoDB database server for any purpose you want, for me this setup is fine for testing purpose.
+
+# Redis
+
+1. Start `Redis` via [docker-compose](https://docs.docker.com/compose/) in terminal:
+
+  ```shell
+    $ cd ./redis-docker-compose
+    $ docker-compose up -d
+  ```
+
+2. Connect to the Redis server:
+
+  ```shell
+    $ docker exec -ti redis redis-cli -h 127.0.0.1 -p 6379 -a 12345678
+  ```
+
+3. Other commands maybe needed:
+  ```shell
+    # you can stop service by the command
+    $ docker stop redis
+    # you can start service by the command
+    # maybe you need this command after your computer restart
+    $ docker start redis
+    # you can restart service by the command
+    # maybe you need this command after you made some update for [redis.conf]
+    $ docker restart redis
+  ```
+
+# Q&A
+1. How to change password?
+  * Just change the line `requirepass 12345678` in file `redis.conf` to `requirepass [new password]`, and then restart the service with command `docker restart redis`
+
